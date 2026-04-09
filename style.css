@@ -55,3 +55,10 @@ footer {
     text-align: center;
     padding: 1rem;
 }
+.hero p {
+    max-width: 700px !important;
+    margin: 0 auto 3rem auto !important;
+    text-align: center !important;
+    line-height: 1.7 !important;
+    padding: 0 1rem !important;
+}
