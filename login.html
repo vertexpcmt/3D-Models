@@ -8,7 +8,7 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box;}
         body{font-family:'Segoe UI',system-ui,sans-serif;background:linear-gradient(135deg,#0c0c1a 0%,#1a1a2e 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;color:#fff;}
-        .login-container{max-width:450px;width:100%;background:linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.05));backdrop-filter:blur(30px);border-radius:25px;padding:3rem;border:1px solid rgba(255,255,255,0.2);box-shadow:0 25px 50px rgba(0,0,0,0.5);}
+        .auth-container{max-width:450px;width:100%;background:linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.05));backdrop-filter:blur(30px);border-radius:25px;padding:3rem;border:1px solid rgba(255,255,255,0.2);box-shadow:0 25px 50px rgba(0,0,0,0.5);}
         .logo{text-align:center;margin-bottom:2.5rem;}
         .logo i{font-size:4rem;color:#00d4ff;margin-bottom:1rem;display:block;}
         .logo h1{font-size:2.2rem;font-weight:800;background:linear-gradient(45deg,#00d4ff,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
@@ -19,105 +19,104 @@
         .form-group i{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:#00d4ff;font-size:1.2rem;}
         .login-btn{width:100%;padding:18px;background:linear-gradient(45deg,#00d4ff,#00aaff);color:#fff;border:none;border-radius:15px;font-size:1.3rem;font-weight:700;cursor:pointer;transition:all 0.4s;text-transform:uppercase;letter-spacing:1px;}
         .login-btn:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(0,212,255,0.5);}
-        .login-btn:active{transform:translateY(-1px);}
-        .divider{text-align:center;margin:2rem 0;color:rgba(255,255,255,0.6);position:relative;}
-        .divider::before{content:'';position:absolute;left:0;top:50%;width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);}
-        .divider span{background:rgba(26,26,46,0.8);padding:0 1rem;}
         .google-btn{display:flex;align-items:center;justify-content:center;gap:1rem;width:100%;padding:16px;background:rgba(255,255,255,0.1);color:#fff;border:2px solid rgba(255,255,255,0.2);border-radius:15px;font-size:1.1rem;cursor:pointer;transition:all 0.3s;margin-top:1rem;}
         .google-btn:hover{background:rgba(255,255,255,0.15);border-color:#00d4ff;transform:translateY(-2px);}
-        .google-btn i{font-size:1.3rem;}
         .links{text-align:center;margin-top:2rem;}
-        .links a{color:#00d4ff;text-decoration:none;font-weight:500;transition:color 0.3s;}
+        .links a{color:#00d4ff;text-decoration:none;font-weight:600;transition:color 0.3s;margin:0 1rem;}
         .links a:hover{color:#fff;}
-        .success-message{display:none;background:linear-gradient(45deg,#00d4ff,#00aaff);color:#fff;padding:1.5rem;border-radius:15px;margin:1.5rem 0;text-align:center;font-weight:600;}
-        @media(max-width:480px){.login-container{padding:2rem 1.5rem;}}
+        .loading{display:none;text-align:center;padding:2rem;}
+        .loading i{font-size:2.5rem;color:#00d4ff;}
+        @media(max-width:480px){.auth-container{padding:2rem 1.5rem;}}
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <div class="auth-container">
         <div class="logo">
-            <i class="fas fa-cube"></i>
+            <i class="fas fa-sign-in-alt"></i>
             <h1>Vertex PCMT</h1>
             <p style="color:rgba(255,255,255,0.7);">Member Login</p>
         </div>
         
-        <div id="loginForm">
-            <form onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <i class="fas fa-user"></i>
-                    <input type="email" id="email" placeholder="Email Address" required>
-                </div>
-                <div class="links">
-    <a href="index.html">← Back to Store</a> | 
-    <a href="register.html" style="color:#ff6b6b;">Create Account</a>
-</div>
-                <div class="form-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" id="password" placeholder="Password" required>
-                </div>
-                <button type="submit" class="login-btn">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </button>
-            </form>
-            
-            <div class="divider">
-                <span>or</span>
+        <form id="loginForm">
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" placeholder="Email Address" required>
             </div>
-            
-            <button class="google-btn" onclick="googleLogin()">
-                <i class="fab fa-google"></i>
-                Continue with Google
-            </button>
+            <div class="form-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="login-btn">🔐 Sign In</button>
+        </form>
+        
+        <div style="text-align:center;margin:2rem 0;color:rgba(255,255,255,0.6);">
+            <span style="background:rgba(26,26,46,0.8);padding:0 1rem;">or</span>
         </div>
         
-        <div id="successMessage" class="success-message">
-            <i class="fas fa-check-circle" style="font-size:2rem;margin-bottom:1rem;"></i>
-            Login successful! Redirecting to dashboard...
-        </div>
+        <button id="googleLogin" class="google-btn">
+            <i class="fab fa-google"></i> Continue with Google
+        </button>
         
         <div class="links">
-            <a href="index.html">← Back to Store</a> | 
-            <a href="#" onclick="showRegister()">Create Account</a>
+            <a href="register.html">📝 Create Account</a>
+            <a href="index.html">← Back to Store</a>
         </div>
     </div>
 
-    <script>
-        // Demo login function (replace with real auth)
-        function handleLogin(event) {
-            event.preventDefault();
+    <div id="loading" class="loading">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Signing you in...</p>
+    </div>
+
+    <!-- Firebase Magic -->
+    <script type="module">
+        import { signInWithEmailAndPassword, signInWithPopup, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        
+        const auth = window.auth;
+        const provider = window.googleProvider;
+        const loadingEl = document.getElementById('loading');
+        const formEl = document.getElementById('loginForm');
+
+        // Email Login
+        formEl.addEventListener('submit', async (e) => {
+            e.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             
-            // Demo credentials (change these!)
-            if (email === 'demo@vertexpcmt.com' && password === 'vertex123') {
-                showSuccess();
-                setTimeout(() => {
-                    // Redirect to members area
-                    window.location.href = 'dashboard.html';
-                }, 1500);
-            } else {
-                alert('❌ Invalid credentials!\n\nDemo Login:\nEmail: demo@vertexpcmt.com\nPassword: vertex123');
+            showLoading();
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                window.location.href = 'dashboard.html';
+            } catch (error) {
+                alert('❌ ' + error.message);
+                hideLoading();
             }
-        }
-        
-        function googleLogin() {
-            alert('🔄 Google login coming soon!\n\nUse demo login above.');
-        }
-        
-        function showSuccess() {
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-        }
-        
-        function showRegister() {
-            alert('📝 Registration form coming soon!');
-        }
-        
-        // Enter key support
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.querySelector('.login-btn').click();
+        });
+
+        // Google Login
+        document.getElementById('googleLogin').addEventListener('click', async () => {
+            showLoading();
+            try {
+                await signInWithPopup(auth, provider);
+                window.location.href = 'dashboard.html';
+            } catch (error) {
+                alert('❌ ' + error.message);
+                hideLoading();
             }
+        });
+
+        function showLoading() {
+            formEl.style.display = 'none';
+            loadingEl.style.display = 'block';
+        }
+        function hideLoading() {
+            formEl.style.display = 'block';
+            loadingEl.style.display = 'none';
+        }
+
+        // Auto redirect if logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) window.location.href = 'dashboard.html';
         });
     </script>
 </body>
