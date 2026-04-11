@@ -3,104 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | Vertex PCMT</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Segoe UI',system-ui,sans-serif;background:linear-gradient(135deg,#0c0c1a 0%,#1a1a2e 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;color:#fff;}
-        .auth-container{max-width:500px;width:100%;background:linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.05));backdrop-filter:blur(30px);border-radius:25px;padding:3rem;border:1px solid rgba(255,255,255,0.2);box-shadow:0 25px 50px rgba(0,0,0,0.5);}
-        .logo{text-align:center;margin-bottom:2.5rem;}
-        .logo i{font-size:4rem;color:#00d4ff;margin-bottom:1rem;display:block;}
-        .logo h1{font-size:2.2rem;font-weight:800;background:linear-gradient(45deg,#00d4ff,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-        .form-group{position:relative;margin-bottom:1.8rem;}
-        .form-group input{width:100%;padding:18px 20px 18px 50px;background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.2);border-radius:15px;color:#fff;font-size:1.1rem;transition:all 0.3s;}
-        .form-group input::placeholder{color:rgba(255,255,255,0.6);}
-        .form-group input:focus{outline:none;border-color:#00d4ff;box-shadow:0 0 20px rgba(0,212,255,0.3);background:rgba(255,255,255,0.15);}
-        .form-group i{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:#00d4ff;font-size:1.2rem;}
-        .register-btn{width:100%;padding:20px;background:linear-gradient(45deg,#00d4ff,#00aaff);color:#fff;border:none;border-radius:15px;font-size:1.3rem;font-weight:700;cursor:pointer;transition:all 0.4s;text-transform:uppercase;letter-spacing:1px;margin-bottom:1.5rem;}
-        .register-btn:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(0,212,255,0.5);}
-        .google-btn{display:flex;align-items:center;justify-content:center;gap:1rem;width:100%;padding:16px;background:rgba(255,255,255,0.1);color:#fff;border:2px solid rgba(255,255,255,0.2);border-radius:15px;font-size:1.1rem;cursor:pointer;transition:all 0.3s;}
-        .google-btn:hover{background:rgba(255,255,255,0.15);border-color:#00d4ff;transform:translateY(-2px);}
-        .login-link{text-align:center;margin-top:2rem;}
-        .login-link a{color:#00d4ff;text-decoration:none;font-weight:600;transition:color 0.3s;}
-        .login-link a:hover{color:#fff;}
-        .success-message{display:none;background:linear-gradient(45deg,#00d4ff,#00aaff);color:#fff;padding:1.5rem;border-radius:15px;margin:1.5rem 0;text-align:center;font-weight:600;}
-    </style>
+    <title>Register - 3D Models Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
 </head>
 <body>
-    <div class="auth-container">
-        <div class="logo">
-            <i class="fas fa-user-plus"></i>
-            <h1>Vertex PCMT</h1>
-            <p style="color:rgba(255,255,255,0.7);">Create Account</p>
-        </div>
-        
-        <div id="registerForm">
-            <form onsubmit="handleRegister(event)">
-                <div class="form-group">
-                    <i class="fas fa-user"></i>
-                    <input type="text" id="fullname" placeholder="Full Name" required>
-                </div>
-                <div class="form-group">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" id="email" placeholder="Email Address" required>
-                </div>
-                <div class="form-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" id="password" placeholder="Password (min 6 chars)" minlength="6" required>
-                </div>
-                <button type="submit" class="register-btn">
-                    <i class="fas fa-user-plus"></i> Create Account
-                </button>
-            </form>
-            
-            <div class="divider" style="text-align:center;margin:2rem 0;color:rgba(255,255,255,0.6);position:relative;">
-                <span style="background:rgba(26,26,46,0.8);padding:0 1rem;">or</span>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo">
+                <h1>Join 3D Models</h1>
+                <p>Create account to upload & share your models</p>
             </div>
-            
-            <button class="google-btn" onclick="googleRegister()">
-                <i class="fab fa-google"></i>
-                Continue with Google
+
+            <!-- ✅ GOOGLE SIGN-UP BUTTON (Creates account automatically) -->
+            <button id="googleSignUp" class="btn btn-google">
+                <svg class="google-icon" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.83l2.66-2.07z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                <span>Continue with Google</span>
             </button>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span>or create account with email</span>
+            </div>
+
+            <!-- Email/Password Registration -->
+            <form id="registerForm" class="email-form">
+                <div class="input-group">
+                    <label for="displayName">Full Name</label>
+                    <input type="text" id="displayName" required placeholder="John Doe">
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="john@example.com">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required minlength="6" placeholder="••••••••">
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required placeholder="••••••••">
+                </div>
+                
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+                
+                <button type="submit" class="btn btn-primary">Create Account</button>
+            </form>
+
+            <div class="login-footer">
+                <p>Already have an account? <a href="login.html">Sign in</a></p>
+            </div>
         </div>
-        
-        <div id="successMessage" class="success-message">
-            <i class="fas fa-check-circle" style="font-size:2rem;margin-bottom:1rem;"></i>
-            Account created! Please log in.
-        </div>
-        
-        <div class="login-link">
-            Already have an account? <a href="login.html">Log in here</a>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+            <div class="spinner"></div>
+            <p>Creating your account...</p>
         </div>
     </div>
 
-    <script>
-        function handleRegister(event) {
-            event.preventDefault();
-            const fullname = document.getElementById('fullname').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+    <script type="module">
+        import { 
+            googleSignIn, 
+            emailSignUp, 
+            onAuthStateChanged, 
+            auth 
+        } from './auth.js';
+
+        // Redirect if already signed in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.location.href = 'dashboard.html';
+            }
+        });
+
+        // Google Sign-Up (same as Sign-In - Firebase auto-creates)
+        document.getElementById('googleSignUp').addEventListener('click', async () => {
+            const loading = document.getElementById('loadingOverlay');
+            const errorMsg = document.getElementById('errorMessage');
             
-            if (password.length < 6) {
-                alert('❌ Password must be at least 6 characters!');
+            loading.style.display = 'flex';
+            errorMsg.style.display = 'none';
+            
+            try {
+                await googleSignIn(); // ✅ Same function works for both!
+                window.location.href = 'dashboard.html';
+            } catch (error) {
+                console.error('Google Sign-Up failed:', error);
+                errorMsg.textContent = `Sign-up failed: ${error.message}`;
+                errorMsg.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+            }
+        });
+
+        // Email Registration
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const displayName = document.getElementById('displayName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const loading = document.getElementById('loadingOverlay');
+            const errorMsg = document.getElementById('errorMessage');
+            
+            // Validation
+            if (password !== confirmPassword) {
+                errorMsg.textContent = 'Passwords do not match!';
+                errorMsg.style.display = 'block';
                 return;
             }
             
-            // Demo registration
-            showSuccess();
-            setTimeout(() => {
-                window.location.href = 'login.html';
-            }, 2000);
-        }
-        
-        function googleRegister() {
-            alert('🔄 Google registration coming soon!');
-        }
-        
-        function showSuccess() {
-            document.getElementById('registerForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-        }
+            if (password.length < 6) {
+                errorMsg.textContent = 'Password must be at least 6 characters!';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            
+            loading.style.display = 'flex';
+            errorMsg.style.display = 'none';
+            
+            try {
+                await emailSignUp(email, password);
+                // Update user profile with display name
+                // await updateProfile(auth.currentUser, { displayName });
+                window.location.href = 'dashboard.html';
+            } catch (error) {
+                console.error('Email Sign-Up failed:', error);
+                errorMsg.textContent = `Registration failed: ${error.message}`;
+                errorMsg.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
