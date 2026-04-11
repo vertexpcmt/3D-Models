@@ -1,24 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head><title>Firebase Config</title></head>
+<body>
 <script type="module">
-  // 🔥 YOUR FIREBASE CONFIG HERE
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+  import { getAuth, 
+           signInWithEmailAndPassword, 
+           createUserWithEmailAndPassword, 
+           signInWithPopup, 
+           GoogleAuthProvider, 
+           signOut, 
+           onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
-  const firebaseConfig = {
-    // ← PASTE YOUR CONFIG HERE ↓
-    apiKey: "YOUR_API_KEY",
+  // 🔥 YOUR LIVE CONFIG:
+  window.firebaseConfig = {
+    apiKey: "AIzaSyDM7FXBc041Bs3N0PCm18C9VSlm42tA5ZQ",
     authDomain: "vertex-pcmt.firebaseapp.com",
     projectId: "vertex-pcmt",
-    storageBucket: "vertex-pcmt.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "YOUR_APP_ID"
+    storageBucket: "vertex-pcmt.firebasestorage.app",
+    messagingSenderId: "960288192749",
+    appId: "1:960288192749:web:c5c623dc79036ffce234e4"
   };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const googleProvider = new GoogleAuthProvider();
-
-  // Make auth global
-  window.auth = auth;
-  window.googleProvider = googleProvider;
+  const app = initializeApp(window.firebaseConfig);
+  window.auth = getAuth(app);
+  window.googleProvider = new GoogleAuthProvider();
+  
+  console.log('✅ Firebase Ready!');
 </script>
+</body>
+</html>
