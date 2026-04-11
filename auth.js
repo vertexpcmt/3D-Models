@@ -1,10 +1,11 @@
-// auth.js - Central auth handler
+// auth.js - COMPLETE VERSION
 import { 
   signInWithPopup, 
   signOut, 
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  updateProfile
 } from 'firebase/auth';
 import { auth, googleProvider } from './firebase-config.js';
 
@@ -21,15 +22,29 @@ export async function googleSignIn() {
 }
 
 export async function emailSignIn(email, password) {
-  return await signInWithEmailAndPassword(auth, email, password);
+  try {
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    return result.user;
+  } catch (error) {
+    throw error;
+  }
 }
 
 export async function emailSignUp(email, password) {
-  return await createUserWithEmailAndPassword(auth, email, password);
+  try {
+    const result = await createUserWithEmailAndPassword(auth, email, password);
+    return result.user;
+  } catch (error) {
+    throw error;
+  }
 }
 
 export async function userSignOut() {
-  await signOut(auth);
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.error('Sign-out error:', error);
+  }
 }
 
 export { onAuthStateChanged, auth };
